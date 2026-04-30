@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.db.models import Avg
 from .models import Calificacion
 from .forms import CalificacionForm
-from django.contrib import messages
 
 @login_required
 def listar(request):
@@ -16,7 +16,8 @@ def crear(request):
     if request.method == 'POST':
         form = CalificacionForm(request.POST)
         if form.is_valid():
-            form.save()messages.success(request, 'Calificación creada exitosamente.')
+            form.save()
+            messages.success(request, 'Calificación creada exitosamente.')
             return redirect('listar')
     else:
         form = CalificacionForm()
@@ -28,7 +29,8 @@ def editar(request, pk):
     if request.method == 'POST':
         form = CalificacionForm(request.POST, instance=calificacion)
         if form.is_valid():
-            form.save()messages.success(request, 'Calificación actualizada.')
+            form.save()
+            messages.success(request, 'Calificación actualizada correctamente.')
             return redirect('listar')
     else:
         form = CalificacionForm(instance=calificacion)
@@ -38,8 +40,7 @@ def editar(request, pk):
 def eliminar(request, pk):
     calificacion = get_object_or_404(Calificacion, pk=pk)
     if request.method == 'POST':
-        calificacion.delete()messages.success(request, 'Calificación eliminada.')
+        calificacion.delete()
+        messages.success(request, 'Calificación eliminada correctamente.')
         return redirect('listar')
     return render(request, 'calificaciones/eliminar.html', {'calificacion': calificacion})
-from django.contrib import messages
-# Modificar las vistas crear, editar, eliminar para agregar mensajes

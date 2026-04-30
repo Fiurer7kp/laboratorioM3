@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0">📝 Registro de Usuario</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Registrarse</button>
+                    <a href="{% url 'login' %}" class="btn btn-secondary">Ya tengo cuenta</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

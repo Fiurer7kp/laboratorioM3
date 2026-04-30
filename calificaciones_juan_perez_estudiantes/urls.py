@@ -1,10 +1,9 @@
 from django.urls import path
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-
-def home(request):
-    return render(request, 'home.html')
+from . import views
 
 urlpatterns = [
-    path('', login_required(home), name='home'),
+    path('', views.listar, name='listar'),
+    path('crear/', views.crear, name='crear'),
+    path('editar/<int:pk>/', views.editar, name='editar'),
+    path('eliminar/<int:pk>/', views.eliminar, name='eliminar'),
 ]

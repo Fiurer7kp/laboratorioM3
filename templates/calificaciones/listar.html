@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Calificaciones</h2>
+<a href="{% url 'crear' %}" class="btn btn-primary mb-3">➕ Nueva</a>
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr><th>Estudiante</th><th>Asignatura</th><th>Promedio</th><th>Acciones</th></tr>
+    </thead>
+    <tbody>
+        {% for c in calificaciones %}
+        <tr>
+            <td>{{ c.nombre_estudiante }}</td><td>{{ c.asignatura }}</td><td>{{ c.promedio }}</td>
+            <td><a href="{% url 'editar' c.id %}" class="btn btn-sm btn-warning">Editar</a>
+                <a href="{% url 'eliminar' c.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">No hay registros</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p><strong>Promedio general:</strong> {{ promedio_general }}</p>
+{% endblock %}

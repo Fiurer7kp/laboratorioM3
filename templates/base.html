@@ -14,7 +14,10 @@
             <div>
                 {% if user.is_authenticated %}
                     <span class="text-white">👤 {{ user.username }}</span>
-                    <a class="btn btn-sm btn-light" href="{% url 'logout' %}">Salir</a>
+                    <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-light">Salir</button>
+                    </form>
                 {% else %}
                     <a class="btn btn-sm btn-outline-light" href="{% url 'login' %}">Iniciar Sesión</a>
                     <a class="btn btn-sm btn-light" href="{% url 'registro' %}">Registrarse</a>

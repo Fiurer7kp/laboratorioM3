@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Iniciar Sesión</div>
+            <div class="card-body">
+                {% if form.errors %}
+                    <div class="alert alert-danger">Usuario o contraseña incorrectos</div>
+                {% endif %}
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="text" name="username" class="form-control mb-2" placeholder="Usuario">
+                    <input type="password" name="password" class="form-control mb-2" placeholder="Contraseña">
+                    <button class="btn btn-primary">Ingresar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
